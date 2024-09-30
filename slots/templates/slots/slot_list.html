@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slot Monitoring</title>
+    <script>
+        function copyToClipboard(link) {
+            // Create a temporary input element
+            var tempInput = document.createElement("input");
+            document.body.appendChild(tempInput);  // Append input to body
+            tempInput.value = link;  // Assign the link text to the input
+            tempInput.select();  // Select the input text
+            document.execCommand("copy");  // Copy the selected text to the clipboard
+            document.body.removeChild(tempInput);  // Remove the temporary input element
+            alert("Copied: " + link);  // Optional: show an alert that the link was copied
+        }
+    </script>
+</head>
+<body>
+    <h1>Remaining Slots</h1>
+
+    <p>Total Links: {{ slots|length }} / {{ total_links }}</p>
+
+    <button onclick="window.location.href='{% url 'inactive_slots' %}'">View Inactive Slots</button>
+
+    {% if slots %}
+        <ol>
+            {% for slot in slots %}
+                <li>
+                    <a href="{{ slot.link }}" target="_blank">{{ slot.link }}</a>
+                    <button onclick="copyToClipboard('{{ slot.link }}')">Copy</button>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No slots available</p>
+    {% endif %}
+</body>
+</html>

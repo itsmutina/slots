@@ -1,0 +1,12 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools %}
+    <div class="object-tools">
+        {{ block.super }}
+        <ul class="object-tools">
+            <li>
+                {{ bulk_upload_button|safe }} <!-- Custom Bulk Upload Button -->
+            </li>
+        </ul>
+    </div>
+{% endblock %}

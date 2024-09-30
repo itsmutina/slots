@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inactive Slots</title>
+</head>
+<body>
+    <h1>Inactive Slots</h1>
+
+    <button onclick="window.location.href='{% url 'slot_list' %}'">View Active Slots</button>
+
+    {% if inactive_slots %}
+        <ol>  <!-- Ordered list to number each inactive slot -->
+            {% for slot in inactive_slots %}
+                <li>{{ slot.link }} (Inactive since: {{ slot.last_checked }})</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No inactive slots.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button">Upload Links</button>
+</form>
+
+<p><a href="{% url 'admin:slots_slot_changelist' %}">Back to Slot List</a></p>
+{% endblock %}
